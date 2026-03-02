@@ -35,7 +35,7 @@ h1{
   margin-bottom:20px;
 }
 
-select,input{
+select{
   width:100%;
   padding:12px;
   margin-top:10px;
@@ -60,36 +60,6 @@ select,input{
   box-shadow:0 0 20px rgba(255,215,0,0.4);
 }
 
-.button{
-  margin-top:12px;
-  padding:12px;
-  width:100%;
-  border:none;
-  border-radius:8px;
-  background:linear-gradient(45deg,#FFD700,#b8860b);
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.stats{
-  margin-top:30px;
-}
-
-.card{
-  background:#121212;
-  padding:20px;
-  border-radius:15px;
-  margin-top:15px;
-  border:1px solid rgba(255,215,0,0.3);
-}
-
-.stat-number{
-  font-size:24px;
-  font-weight:bold;
-  color:#FFD700;
-}
-
 .footer{
   margin-top:30px;
   font-size:12px;
@@ -107,42 +77,16 @@ select,input{
 
 <h3>Select Panel</h3>
 
-<select id="plan" onchange="updatePayment()">
-  <option value="99">1-DAY - ₹99</option>
-  <option value="199">3-DAY - ₹199</option>
-  <option value="350">7-DAY - ₹350</option>
-  <option value="600">15-DAY - ₹600</option>
-  <option value="999">PERMANENT - ₹999</option>
+<select>
+  <option>1-DAY - ₹99</option>
+  <option>3-DAY - ₹199</option>
+  <option>7-DAY - ₹350</option>
+  <option>15-DAY - ₹600</option>
+  <option>PERMANENT - ₹999</option>
 </select>
 
-<div class="price" id="price">Price: ₹99</div>
-
 <div class="qr">
-<img id="qrImage" width="200">
-</div>
-
-<h4>Enter UTR (TXN ID)</h4>
-<input type="text" placeholder="Enter UTR Number">
-<button class="button">Verify UTR</button>
-
-<div class="stats">
-<h3 class="gold">Live Platform Stats</h3>
-
-<div class="card">
-<div class="stat-number">3,210</div>
-<p>Live Players</p>
-</div>
-
-<div class="card">
-<div class="stat-number">125,482+</div>
-<p>Total Users</p>
-</div>
-
-<div class="card">
-<div class="stat-number">4.8 ★</div>
-<p>Community Rating</p>
-</div>
-
+  <img src="qr.png" width="200">
 </div>
 
 <div class="footer">
@@ -151,22 +95,5 @@ select,input{
 
 </div>
 
-<script>
-function updatePayment(){
-  var amount = document.getElementById("plan").value;
-  document.getElementById("price").innerText = "Price: ₹" + amount;
-
-  var upiID = "9672754634-2@ybl";
-  var name = "Bharat";
-
-  var upiLink = "upi://pay?pa=" + upiID + "&pn=" + name + "&am=" + amount + "&cu=INR";
-  var qrURL = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(upiLink);
-
-  document.getElementById("qrImage").src = qrURL;
-}
-
-updatePayment();
-</script>
-
 </body>
-    </html>
+</html>
