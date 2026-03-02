@@ -21,28 +21,28 @@ body{
 
 .gold{
   color:#FFD700;
-  text-shadow:0 0 12px rgba(255,215,0,0.7);
+  text-shadow:0 0 15px rgba(255,215,0,0.8);
 }
 
-h1{
-  margin-top:30px;
-  font-size:32px;
-}
-
-.tagline{
-  font-size:14px;
-  color:#aaaaaa;
-  margin-bottom:20px;
-}
-
-select{
+select,input{
   width:100%;
   padding:12px;
   margin-top:10px;
-  border-radius:8px;
+  border-radius:10px;
   border:1px solid #FFD700;
   background:#111;
   color:white;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+  background:#25D366;
+  color:white;
+  font-weight:bold;
 }
 
 .price{
@@ -55,13 +55,22 @@ select{
 .qr{
   margin:20px 0;
   padding:15px;
-  border-radius:15px;
+  border-radius:20px;
   border:2px solid #FFD700;
-  box-shadow:0 0 20px rgba(255,215,0,0.4);
+  box-shadow:0 0 25px rgba(255,215,0,0.5);
+}
+
+.card{
+  background:#111;
+  padding:15px;
+  border-radius:15px;
+  margin-top:15px;
+  border:1px solid rgba(255,215,0,0.3);
+  font-size:18px;
 }
 
 .footer{
-  margin-top:30px;
+  margin-top:40px;
   font-size:12px;
   color:#777;
 }
@@ -73,20 +82,40 @@ select{
 <div class="container">
 
 <h1 class="gold">👑 DRIP CLIENT</h1>
-<p class="tagline">Engineered for Premium Access<br>Secure. Stable. Structured.</p>
+<p>Engineered for Premium Access<br>Secure. Stable. Structured.</p>
 
 <h3>Select Panel</h3>
 
-<select>
-  <option>1-DAY - ₹99</option>
-  <option>3-DAY - ₹199</option>
-  <option>7-DAY - ₹350</option>
-  <option>15-DAY - ₹600</option>
-  <option>PERMANENT - ₹999</option>
+<select id="plan" onchange="updatePrice()">
+  <option value="99">1-DAY - ₹99</option>
+  <option value="199">3-DAY - ₹199</option>
+  <option value="350">7-DAY - ₹350</option>
+  <option value="600">15-DAY - ₹600</option>
+  <option value="999">PERMANENT - ₹999</option>
 </select>
+
+<div class="price">
+Selected Price: ₹<span id="selectedPrice">99</span>
+</div>
 
 <div class="qr">
   <img src="qr.png" width="200">
+</div>
+
+<h3>Enter UTR</h3>
+
+<input type="text" id="utr" placeholder="Enter UTR">
+
+<button onclick="sendUTR()">Send on WhatsApp</button>
+
+<h3 class="gold">Live Platform Stats</h3>
+
+<div class="card">
+Live Players: <span id="livePlayers">3210</span>
+</div>
+
+<div class="card">
+Total Users: <span id="totalUsers">125482</span>
 </div>
 
 <div class="footer">
@@ -95,5 +124,34 @@ select{
 
 </div>
 
+<script>
+function updatePrice(){
+  let amount = document.getElementById("plan").value;
+  document.getElementById("selectedPrice").innerText = amount;
+}
+
+function sendUTR(){
+  var utr = document.getElementById("utr").value;
+  var amount = document.getElementById("selectedPrice").innerText;
+
+  var message = "Payment Done ✅%0AName: Bharat%0AUTR: " + utr + "%0AAmount: ₹" + amount;
+
+  var url = "https://wa.me/919610769039?text=" + message;
+
+  window.open(url, "_blank");
+}
+
+let players = 3210;
+let users = 125482;
+
+setInterval(function(){
+  players += Math.floor(Math.random()*3);
+  users += Math.floor(Math.random()*5);
+
+  document.getElementById("livePlayers").innerText = players;
+  document.getElementById("totalUsers").innerText = users;
+},2000);
+</script>
+
 </body>
-</html>
+  </html>
