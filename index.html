@@ -2,96 +2,144 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRIP CLIENT</title>
+<title>DRIP Client Panel</title>
 
 <style>
+
 body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#0b0f1a,#000000);
-  color:#cccccc;
-  text-align:center;
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#07121a,#000);
+color:white;
+text-align:center;
+}
+
+.hero{
+padding:80px 20px;
+}
+
+.freefire{
+color:#00eaff;
+letter-spacing:6px;
+font-size:18px;
+}
+
+.title{
+font-size:38px;
+background:linear-gradient(90deg,#00eaff,#ffffff);
+-webkit-background-clip:text;
+color:transparent;
+margin-top:10px;
+}
+
+.desc{
+color:#bbbbbb;
+line-height:1.6;
+margin-top:20px;
+}
+
+.dashbtn{
+margin-top:30px;
+padding:15px 40px;
+border:none;
+border-radius:10px;
+background:#28d7df;
+color:black;
+font-weight:bold;
+font-size:18px;
 }
 
 .container{
-  max-width:400px;
-  margin:auto;
-  padding:20px;
+max-width:420px;
+margin:auto;
+padding:20px;
 }
 
 .gold{
-  color:#FFD700;
-  text-shadow:0 0 15px rgba(255,215,0,0.8);
+color:#FFD700;
 }
 
 select,input{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:10px;
-  border:1px solid #FFD700;
-  background:#111;
-  color:white;
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #FFD700;
+background:#111;
+color:white;
 }
 
 button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:10px;
-  background:#25D366;
-  color:white;
-  font-weight:bold;
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#28d7df;
+color:black;
+font-weight:bold;
 }
 
 .price{
-  margin-top:10px;
-  font-size:20px;
-  font-weight:bold;
-  color:#FFD700;
+margin-top:10px;
+font-size:22px;
+color:#FFD700;
 }
 
 .qr{
-  margin:20px 0;
-  padding:15px;
-  border-radius:20px;
-  border:2px solid #FFD700;
-  box-shadow:0 0 25px rgba(255,215,0,0.5);
+margin:25px 0;
+padding:20px;
+border-radius:20px;
+border:2px solid #FFD700;
+box-shadow:0 0 20px rgba(255,215,0,0.6);
 }
 
 .card{
-  background:#111;
-  padding:15px;
-  border-radius:15px;
-  margin-top:15px;
-  border:1px solid rgba(255,215,0,0.3);
-  font-size:18px;
+background:#111;
+padding:18px;
+border-radius:15px;
+margin-top:15px;
+border:1px solid rgba(255,215,0,0.3);
+font-size:18px;
 }
 
 .footer{
-  margin-top:40px;
-  font-size:12px;
-  color:#777;
+margin-top:40px;
+font-size:12px;
+color:#777;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="hero">
 
-<h1 class="gold">👑 DRIP CLIENT</h1>
-<p>Engineered for Premium Access<br>Secure. Stable. Structured.</p>
+<h2 class="freefire">👑 FREE FIRE</h2>
+
+<h1 class="title">DRIP Client Panel</h1>
+
+<p class="desc">
+Built for Stability. Designed for Safe Gaming.<br>
+Stay Secure. Stay Competitive.<br>
+Play With Confidence.
+</p>
+
+<button class="dashbtn" onclick="scrollToDashboard()">▶ DASHBOARD</button>
+
+</div>
+
+<div class="container" id="dashboard">
 
 <h3>Select Panel</h3>
 
 <select id="plan" onchange="updatePrice()">
-  <option value="99">1-DAY - ₹99</option>
-  <option value="199">3-DAY - ₹199</option>
-  <option value="350">7-DAY - ₹350</option>
-  <option value="600">15-DAY - ₹600</option>
-  <option value="999">PERMANENT - ₹999</option>
+<option value="99">1-DAY - ₹99</option>
+<option value="199">3-DAY - ₹199</option>
+<option value="350">7-DAY - ₹350</option>
+<option value="600">15-DAY - ₹600</option>
+<option value="999">PERMANENT - ₹999</option>
 </select>
 
 <div class="price">
@@ -99,23 +147,23 @@ Selected Price: ₹<span id="selectedPrice">99</span>
 </div>
 
 <div class="qr">
-  <img src="qr.png" width="200">
+<img src="qr.png" width="220">
 </div>
 
 <h3>Enter UTR</h3>
 
 <input type="text" id="utr" placeholder="Enter UTR">
 
-<button onclick="sendUTR()">Send on WhatsApp</button>
+<button onclick="sendUTR()">Submit</button>
 
 <h3 class="gold">Live Platform Stats</h3>
 
 <div class="card">
-Live Players: <span id="livePlayers">3210</span>
+Live Players: <span id="livePlayers">34</span>
 </div>
 
 <div class="card">
-Total order: <span id="totalUsers">125482</span>
+Total Orders: <span id="totalUsers">742</span>
 </div>
 
 <div class="footer">
@@ -125,33 +173,48 @@ Total order: <span id="totalUsers">125482</span>
 </div>
 
 <script>
+
+function scrollToDashboard(){
+document.getElementById("dashboard").scrollIntoView({behavior:"smooth"});
+}
+
 function updatePrice(){
-  let amount = document.getElementById("plan").value;
-  document.getElementById("selectedPrice").innerText = amount;
+let amount=document.getElementById("plan").value;
+document.getElementById("selectedPrice").innerText=amount;
 }
 
 function sendUTR(){
-  var utr = document.getElementById("utr").value;
-  var amount = document.getElementById("selectedPrice").innerText;
 
-  var message = "Payment Done ✅%0AName: Bharat%0AUTR: " + utr + "%0AAmount: ₹" + amount;
+var utr=document.getElementById("utr").value;
+var amount=document.getElementById("selectedPrice").innerText;
 
-  var url = "https://wa.me/919610769039?text=" + message;
-
-  window.open(url, "_blank");
+if(utr==""){
+alert("Please Enter UTR First");
+return;
 }
 
-let players = 3210;
-let users = 125482;
+var message="Payment Done %0AName: Bharat %0AUTR: "+utr+" %0AAmount: ₹"+amount;
+
+var url="https://wa.me/919610769039?text="+message;
+
+window.open(url,"_blank");
+
+}
+
+let players = 34;
+let users = 742;
 
 setInterval(function(){
-  players += Math.floor(Math.random()*3);
-  users += Math.floor(Math.random()*5);
 
-  document.getElementById("livePlayers").innerText = players;
-  document.getElementById("totalUsers").innerText = users;
-},2000);
+players = 30 + Math.floor(Math.random()*10);
+users += Math.floor(Math.random()*2);
+
+document.getElementById("livePlayers").innerText = players;
+document.getElementById("totalUsers").innerText = users;
+
+},3000);
+
 </script>
 
 </body>
-  </html>
+</html>
